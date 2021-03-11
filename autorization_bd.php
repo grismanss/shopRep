@@ -20,6 +20,8 @@ if ($n==0){
 }
 else{
     $_SESSION['login']=$login;
+    $row=mysqli_fetch_array($res);
+    $_SESSION['id']=$row[0];
     //header("Location:index.php");
    // echo "Добро пожаловать,".$login;
     $mass['status']=1;

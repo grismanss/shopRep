@@ -74,7 +74,7 @@ session_start();
        
             <div id="authorized">
             <a class="navbar-brand" href="#" ><span id="login_user"></span></a>
-            <a class="navbar-brand" href="exit.php" >Выход</a>
+            <a class="navbar-brand" href="#" id="exit_button">Выход</a>
             </div>
      
          <div id="unauthorized">

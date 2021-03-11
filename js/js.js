@@ -1,3 +1,5 @@
+autorizationStatus();
+
 let submit_registration=document.getElementById("submit_registration");
 submit_registration.onclick= function(){
     //let registration_submit=document.getElementById("submit_registration");
@@ -94,3 +96,43 @@ sub_autorization.onclick=function(){
 };
 
 
+function autorizationStatus(){
+    $.ajax({
+		url: 'autorizationStatus.php',
+		method: 'post',
+		dataType: 'html',
+		data: "" ,
+		success: function(data){
+		//	alert(data);
+            
+            let mass_data=JSON.parse(data);
+            if (mass_data['status']==1){
+                let authorized=document.getElementById("authorized");
+                let unauthorized=document.getElementById("unauthorized");
+                authorized.style.display="block";
+                unauthorized.style.display="none";
+                let login_user=document.getElementById("login_user");
+                login_user.innerHTML=mass_data['login'];
+            }
+		}
+	});
+}
+
+
+let exit_button=document.getElementById("exit_button");
+exit_button.onclick=function(){
+    $.ajax({
+		url: 'exit.php',
+		method: 'post',
+		dataType: 'html',
+		data: "" ,
+		success: function(data){
+		//	alert(data);           
+        let authorized=document.getElementById("authorized");
+        let unauthorized=document.getElementById("unauthorized");
+        authorized.style.display="none";
+        unauthorized.style.display="block";
+		}
+	});
+
+};
