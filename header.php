@@ -2,7 +2,7 @@
 session_start();
 
 ?>
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -79,13 +79,14 @@ session_start();
      
          <div id="unauthorized">
           <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Авторизация</a>
-          <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2">Регистрация</a>
+          <a id ="show_modal_registration" class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2">Регистрация</a>
           </div>
      
         </div>
         </div>
     </div>
   </nav>
+
 </header>
 <?php
 //print_r($_SESSION);

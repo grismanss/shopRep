@@ -1,13 +1,36 @@
 autorizationStatus();
+load_products_top();
 
+let show_modal_registration=document.getElementById("show_modal_registration");
+show_modal_registration.onclick=function(){
+    let form_registration=document.getElementById("form_registration");
+    form_registration.style.display="block";
+    let message_registration=document.getElementById("message_registration");
+    let message_registration2=document.getElementById("message_registration2");
+    message_registration.style.display="none";
+    message_registration2.style.display="none";
+    let last_name=document.getElementById("last_name");
+    last_name.value="";
+let first_name=document.getElementById("first_name").value;
+let patronymic=document.getElementById("patronymic").value;
+let date_of_brith=document.getElementById("date_of_brith").value;
+
+};
+
+
+/*
+
+*/
 let submit_registration=document.getElementById("submit_registration");
 submit_registration.onclick= function(){
     //let registration_submit=document.getElementById("submit_registration");
 
 //registration_submit.onclick=function()
 //{
-    message_registration.style.display="none";
-    message_registration2.style.display="none";
+   /* let message_registration=document.getElementById("message_registration");
+    let message_registration2=document.getElementById("message_registration2");*/
+  /*  message_registration.style.display="none";
+    message_registration2.style.display="none";*/
     let pass1=document.getElementById("pass1").value;
     let pass2=document.getElementById("pass2").value;
     let mess="";
@@ -25,8 +48,7 @@ submit_registration.onclick= function(){
     }
 
     if (mess.length!=0){
-        let message_registration=document.getElementById("message_registration");
-        let message_registration2=document.getElementById("message_registration2");
+        
         message_registration.style.display="block";
         message_registration2.style.display="block";
         message_registration2.innerHTML=mess;
@@ -60,6 +82,11 @@ $.ajax({
        message_registration2.style.display="block";
        message_registration2.innerHTML=data;
         message_registration.innerHTML=data;
+        if (data=="Пользователь успешно зарегистрирован"){
+        let form_registration=document.getElementById("form_registration");
+        form_registration.style.display="none";
+    }
+     
     }
 });
     //return false;
@@ -90,6 +117,7 @@ sub_autorization.onclick=function(){
                 unauthorized.style.display="none";
                 let login_user=document.getElementById("login_user");
                 login_user.innerHTML=mass_data['login'];
+                $(".modal").modal("hide");
             }
 		}
 	});
@@ -136,3 +164,34 @@ exit_button.onclick=function(){
 	});
 
 };
+
+
+function load_products_top(){
+    $.ajax({
+        url: 'load_products_top.php',
+        method: 'post',
+        dataType: 'html',
+        data: "" ,
+        success: function(data){
+            //alert(data);
+            let d=JSON.parse(data);
+
+            let s="";
+            for (let i=0; i<d.length;i++){
+                s+="<div class='col-lg-4'>"+
+                "<img class='rounded-circle' src='img/products/"+d[i]['photo']+"' alt='Generic placeholder image' width='140' height='140'>"+
+                "<h2>"+d[i]['name']+"</h2>"+
+                "<p>"+d[i]['description']+" Стоимость:"+d[i]['price']+"</p>"+
+                "<p><a class='btn btn-secondary' href='#' role='button'>Подробнее &raquo;</a></p>"+
+            "</div><!-- /.col-lg-4 -->";
+            }
+            let load_products=document.getElementById("load_products");
+            load_products.innerHTML=s;
+
+
+           
+        }        
+        
+    });
+
+}

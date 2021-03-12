@@ -2,7 +2,7 @@
 include("header.php");
 ?>
 <main>
-
+<span id="message_box"></span>
 
 <?php
 include("connect.php");
@@ -75,6 +75,8 @@ for ($i=0; $i<3; $i++){
       <span class="visually-hidden">Next</span>
     </a>
   </div>
+  
+  
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,11 +113,12 @@ for ($i=0; $i<3; $i++){
         <button type="button"  data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form onsubmit="return false;">
+        <form onsubmit="return false;" >
           <p class="my_message" id="message_registration"></p>
 
           <div class="alert alert-danger" role="alert" id="message_registration2">
           </div>
+          <div id ="form_registration"> 
           <label class="form-check-label">Фамилия</label>
           <input type="text" id="last_name" class="form-control" required>
           <label class="form-check-label">Имя</label>
@@ -139,6 +142,7 @@ for ($i=0; $i<3; $i++){
           </select>
           <br>
           <input type="submit" class="btn btn-primary" value="Зарегистрироваться" id="submit_registration">     
+          </div>
         </form>
       </div>
      
@@ -148,28 +152,12 @@ for ($i=0; $i<3; $i++){
 
 <div class="container marketing">
 
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
-          <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
+       
 
+        <!-- Three columns of text below the carousel -->
+        <div class="row" id="load_products">
+          
+        </div><!-- /.row -->
 
 <?php
 include("footer.php");
