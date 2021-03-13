@@ -21,25 +21,26 @@ let date_of_brith=document.getElementById("date_of_brith").value;
 /*
 
 */
-let submit_registration=document.getElementById("submit_registration");
-submit_registration.onclick= function(){
-    //let registration_submit=document.getElementById("submit_registration");
 
-//registration_submit.onclick=function()
-//{
-   /* let message_registration=document.getElementById("message_registration");
-    let message_registration2=document.getElementById("message_registration2");*/
-  /*  message_registration.style.display="none";
-    message_registration2.style.display="none";*/
-    let pass1=document.getElementById("pass1").value;
-    let pass2=document.getElementById("pass2").value;
-    let mess="";
+function registration(){   
+
+    var pass1=document.getElementById("pass1").value;
+    var pass2=document.getElementById("pass2").value;
+    var email=document.getElementById("email").value;
+    var phone=document.getElementById("phone").value;
+    var last_name=document.getElementById("last_name").value;
+    var first_name=document.getElementById("first_name").value;
+    var patronymic=document.getElementById("patronymic").value;
+    var date_of_brith=document.getElementById("date_of_brith").value;
+    var sex=document.getElementById("sex").value;
+    var message_registration=document.getElementById("message_registration");
+    var message_registration2=document.getElementById("message_registration2");
+    var mess="";
     if (pass1!=pass2){
         mess+="<p>Пароли не совпадают!</p>";
     }
 
-    let email=document.getElementById("email").value;
-    let phone=document.getElementById("phone").value;
+   
     email=email.trim();
     phone=phone.trim();
 
@@ -53,43 +54,37 @@ submit_registration.onclick= function(){
         message_registration2.style.display="block";
         message_registration2.innerHTML=mess;
         message_registration.innerHTML=mess;
-        //return false;
-    }
-/*$last_name=$_POST['last_name'];
-$first_name=$_POST['first_name'];
-$patronymic=$_POST['patronymic'];
-$phone=$_POST['phone'];
-$email=$_POST['email'];
-$pass1=$_POST['pass1'];
-$date_of_brith=$_POST['date_of_brith'];
-$sex=$_POST['sex']; */
-let last_name=document.getElementById("last_name").value;
-let first_name=document.getElementById("first_name").value;
-let patronymic=document.getElementById("patronymic").value;
-let date_of_brith=document.getElementById("date_of_brith").value;
-let sex=document.getElementById("sex").value;
-
-
-$.ajax({
-    url: 'registration_bd.php',
-    method: 'post',
-    dataType: 'html',
-    data: {last_name: last_name, first_name:first_name,patronymic:patronymic,
-        date_of_brith:date_of_brith,sex:sex,email:email,phone:phone, pass1:pass1} ,
-    success: function(data){
-       // alert(data);
-       message_registration.style.display="block";
-       message_registration2.style.display="block";
-       message_registration2.innerHTML=data;
-        message_registration.innerHTML=data;
-        if (data=="Пользователь успешно зарегистрирован"){
-        let form_registration=document.getElementById("form_registration");
-        form_registration.style.display="none";
-    }
      
     }
-});
-    //return false;
+    else{
+
+
+
+
+    $.ajax({
+        url: 'registration_bd.php',
+        method: 'post',
+        dataType: 'html',
+        data: {last_name: last_name, first_name:first_name,patronymic:patronymic,
+            date_of_brith:date_of_brith,sex:sex,email:email,phone:phone, pass1:pass1} ,
+        success: function(data){
+
+            message_registration.style.display="block";
+            message_registration2.style.display="block";
+            message_registration2.innerHTML=data;
+            message_registration.innerHTML=data;
+            if (data=="Пользователь успешно зарегистрирован"){
+                var form_registration=document.getElementById("form_registration");
+                form_registration.style.display="none";
+            }
+            return false;
+            
+        }
+    });
+
+}
+   return false;
+   
 }
 
 
@@ -182,7 +177,7 @@ function load_products_top(){
                 "<img class='rounded-circle' src='img/products/"+d[i]['photo']+"' alt='Generic placeholder image' width='140' height='140'>"+
                 "<h2>"+d[i]['name']+"</h2>"+
                 "<p>"+d[i]['description']+" Стоимость:"+d[i]['price']+"</p>"+
-                "<p><a class='btn btn-secondary' href='#' role='button'>Подробнее &raquo;</a></p>"+
+                "<p><a class='btn btn-secondary' href='product_details.php?id_tovar="+d[i]['id']+"' role='button' >Подробнее &raquo;</a></p>"+
             "</div><!-- /.col-lg-4 -->";
             }
             let load_products=document.getElementById("load_products");
@@ -195,3 +190,6 @@ function load_products_top(){
     });
 
 }
+
+
+
