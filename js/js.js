@@ -68,7 +68,7 @@ function registration(){
         data: {last_name: last_name, first_name:first_name,patronymic:patronymic,
             date_of_brith:date_of_brith,sex:sex,email:email,phone:phone, pass1:pass1} ,
         success: function(data){
-
+            alert(data);
             message_registration.style.display="block";
             message_registration2.style.display="block";
             message_registration2.innerHTML=data;

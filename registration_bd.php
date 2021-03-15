@@ -34,7 +34,7 @@ else{
     $s1="INSERT INTO `users`( `last_name`, `first_name`, `patronymic`, 
     `email`, `phone`, `pass`, `date_of_birth`, `registration_date`, `sex`)
      VALUES ('$last_name','$first_name','$patronymic',
-    '$email','$phone','$pass','$date_of_brith', CURRENT_DATE(),$sex)";
+    '$email','$phone','$pass1','$date_of_brith', CURRENT_DATE(),$sex)";
     $r1=mysqli_query($link,$s1);
     //header("Location:index.php?mess=Пользователь успешно зарегистрирован");
     echo "Пользователь успешно зарегистрирован";

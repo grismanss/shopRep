@@ -30,17 +30,35 @@ session_start();
       font-size: 3.5rem;
     }
   }
+
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+   
 </style>
 
 
 <!-- Custom styles for this template -->
 <link href="css/carousel.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+<link href="css/dashboard.css" rel="stylesheet">
 </head>
 <body>
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark ">
+    <div class="container-fluid ">
       <a class="navbar-brand" href="#"><img class="my_logo" src="img/logo.png">Бытовая техника</a>
       <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
         <form class="d-flex">
@@ -49,13 +67,10 @@ session_start();
         </form>
       </div>
     </div>
-  </nav>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="container-fluid">
-       <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="collapse navbar-collapse " id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="#">Каталог</a>
+            <a class="nav-link" aria-current="page" href="katalog.php">Каталог</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Смартфоны</a>
@@ -84,8 +99,77 @@ session_start();
      
         </div>
         </div>
-    </div>
   </nav>
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Авторизация</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form >
+          <div class="alert alert-danger" role="alert" id="message_autorization">
+          </div>
+          <label class="form-check-label">Логин</label>
+          <input type="text" id="login" class="form-control">
+          <label class="form-check-label">Пароль</label>
+          <input type="password" id="pass" class="form-control">
+          <br>
+          <input type="button" class="btn btn-primary" value="Авторизоваться" id="sub_autorization">
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal2 -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Регистрация</h5>
+        <button type="button"  data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="return registration();">
+          <p class="my_message" id="message_registration"></p>
+          <div class="alert alert-danger" role="alert" id="message_registration2">
+          </div>
+          <div id ="form_registration"> 
+          <label class="form-check-label">Фамилия</label>
+          <input type="text" id="last_name" class="form-control" required>
+          <label class="form-check-label">Имя</label>
+          <input type="text" id="first_name" class="form-control" required>   
+          <label class="form-check-label">Отчество</label>
+          <input type="text" id="patronymic" class="form-control"> 
+          <label class="form-check-label">Телефон</label>
+          <input type="text" id="phone" class="form-control"> 
+          <label class="form-check-label">email</label>
+          <input type="text"  id="email" class="form-control"> 
+          <label class="form-check-label">Пароль</label>
+          <input type="password"  id ="pass1" class="form-control" required> 
+          <label class="form-check-label">Подтверждение пароля</label>
+          <input type="password"  id="pass2"  class="form-control" required> 
+          <label class="form-check-label">Дата рождения</label>
+          <input type="date" id="date_of_brith" class="form-control" required>
+          <label class="form-check-label">Пол</label> 
+          <select id="sex" class="form-select" aria-label="Default select example">
+            <option value="1" selected>М</option> 
+            <option value="0">Ж</option>            
+          </select>
+          <br>
+          <input type="submit" class="btn btn-primary" value="Зарегистрироваться" id="submit_registration">     
+          </div>
+        </form>
+      </div>
+     
+    </div>
+  </div>
+</div>
 
 </header>
 <?php
