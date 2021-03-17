@@ -73,22 +73,14 @@ session_start();
             <a class="nav-link" aria-current="page" href="katalog.php">Каталог</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Смартфоны</a>
+            <a class="nav-link" href="index.php">Главная</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link " href="#" >Техника для дома</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Красота и здоровье</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Прочее</a>
-          </li>
+          
         </ul>
         <div>
        
             <div id="authorized">
-            <a class="navbar-brand" href="#" ><span id="login_user"></span></a>
+            <a class="navbar-brand" href="user_kabinet.php" ><span id="login_user"></span></a>
             <a class="navbar-brand" href="#" id="exit_button">Выход</a>
             </div>
      
