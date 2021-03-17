@@ -1,4 +1,8 @@
 load_user_date();
+let message_new_pass=document.getElementById("message_new_pass");
+message_new_pass.style.display="none";
+
+
 function load_user_date(){
 let message_update_user_date2=document.getElementById("message_update_user_date2");
 message_update_user_date2.style.display="none";
@@ -128,4 +132,43 @@ function update_user_date(){
 
 }
    return false;
+}
+
+
+function new_password(){
+    message_new_pass.style.display="none";
+    message_new_pass.innerHTML="";
+    let oldpass=document.getElementById("old_pass").value;
+    let newpass=document.getElementById("newpass").value;
+    let newpass2=document.getElementById("newpass2").value;
+    if (newpass!=newpass2){
+        message_new_pass.style.display="block";
+        message_new_pass.innerHTML="Новые пароли не совпадают";
+    }
+    else{
+        $.ajax({
+            url: 'update_user_pass.php',
+            method: 'post',
+            dataType: 'html',
+            data: {oldpass:oldpass,newpass:newpass} ,
+            success: function(data){
+                alert(data);
+                if(data=="0"){
+                    message_new_pass.style.display="block";
+                    message_new_pass.innerHTML="Не удалось сменить пароль";
+                }
+                else{
+                    message_new_pass.style.display="block";
+                    message_new_pass.innerHTML="Пароль успешно изменен";
+                }
+                $(".exampleModal3").modal("show");
+                return false;
+                
+            }
+        });
+    }
+
+
+
+    return false;
 }

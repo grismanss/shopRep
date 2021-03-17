@@ -1,6 +1,32 @@
 <?php
 include("header.php");
 ?>
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Смена пароля</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="return new_password();">
+          <div class="alert alert-danger" role="alert" id="message_new_pass">         
+          </div>
+          <label class="form-check-label">Старый пароль</label>
+          <input type="password" id="old_pass" class="form-control" require>
+          <label class="form-check-label">Новый пароль</label>
+          <input type="password" id="newpass" class="form-control" require>
+          <label class="form-check-label">Подтверждение пароля</label>
+          <input type="password" id="newpass2" class="form-control" require>
+          <br>
+          <input type="submit" class="btn btn-primary" value="Сохранить изменения" >
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
 <div class="container">
 
@@ -31,7 +57,9 @@ include("header.php");
           <input type="submit" class="btn btn-primary" value="Сохранить изменения" id="submit_update_user_date" disabled>     
           <input type="button" class="btn btn-primary" value="Редактировать личные данные " id="update_status">
           </div>
+          <a id ="show_modal_registration" class=" btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal3">Сменить пароль</a>
         </form>
+       
 </div>
 <script src="js/js4.js"></script>
 <?php
