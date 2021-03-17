@@ -14,11 +14,11 @@ include("header.php");
           <div class="alert alert-danger" role="alert" id="message_new_pass">         
           </div>
           <label class="form-check-label">Старый пароль</label>
-          <input type="password" id="old_pass" class="form-control" require>
+          <input type="password" id="old_pass" class="form-control" required >
           <label class="form-check-label">Новый пароль</label>
-          <input type="password" id="newpass" class="form-control" require>
+          <input type="password" id="newpass" class="form-control" required >
           <label class="form-check-label">Подтверждение пароля</label>
-          <input type="password" id="newpass2" class="form-control" require>
+          <input type="password" id="newpass2" class="form-control" required >
           <br>
           <input type="submit" class="btn btn-primary" value="Сохранить изменения" >
         </form>
@@ -29,7 +29,6 @@ include("header.php");
 </div>
 
 <div class="container">
-
 <div class="modal-body">
         <form onsubmit="return update_user_date();">
           <p class="my_message" id="message_update_user_date"></p>

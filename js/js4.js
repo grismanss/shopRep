@@ -161,7 +161,7 @@ function new_password(){
                     message_new_pass.style.display="block";
                     message_new_pass.innerHTML="Пароль успешно изменен";
                 }
-                $(".exampleModal3").modal("show");
+  
                 return false;
                 
             }
