@@ -81,7 +81,9 @@ session_start();
        
             <div id="authorized">
             <a class="navbar-brand" href="user_kabinet.php" ><span id="login_user"></span></a>
-            <a class="navbar-brand" href="#" id="exit_button">Выход</a>
+            <a class="navbar-brand" href="user_korzina.php" >Корзина</a>
+            
+            <a class="navbar-brand" href="index.php" id="exit_button">Выход</a>
             </div>
      
          <div id="unauthorized">
