@@ -9,8 +9,8 @@ foreach ($_SESSION['korzina'] as $key => $value) {
         $count=$_SESSION['korzina'][$key]['count'];
 
         $s="INSERT INTO `orders`( `general_order_id`, `user_id`, 
-        `product_id`, `count`, `status_id`) 
-        VALUES ($maxid,$id,$product_id,$count,6)";
+        `product_id`, `count`) 
+        VALUES ($maxid,$id,$product_id,$count)";
         mysqli_query($link,$s);
         //echo $s;
     //}

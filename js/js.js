@@ -193,3 +193,9 @@ function load_products_top(){
 
 
 
+let poisk_form=document.getElementById("poisk_form");
+poisk_form.onclick=function(){
+    let poisk_data =document.getElementById("poisk_data").value;
+    document.location.href = "poisk.php?dat="+poisk_data;
+    //document.location.replace("poisk.php?dat="+poisk_data);
+};

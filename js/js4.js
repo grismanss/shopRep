@@ -1,4 +1,5 @@
 load_user_date();
+history_orders_load();
 let message_new_pass=document.getElementById("message_new_pass");
 message_new_pass.style.display="none";
 
@@ -171,4 +172,38 @@ function new_password(){
 
 
     return false;
+}
+
+function history_orders_load(){
+    $.ajax({
+        url: 'history_orders_load.php',
+        method: 'post',
+        dataType: 'html',
+        data: "" ,
+        success: function(data){
+           // alert(data);
+            let s="<table class='table'>"+
+            "<thead class='thead-dark'>"+
+              "<tr>     <th scope='col'>№</th>"+
+                "<th scope='col'>Дата</th>"+
+                "<th scope='col'>Сумма</th>"+
+                "<th scope='col'>Статус</th>"+
+                "<th scope='col'></th> </tr> </thead>  <tbody>";
+            let mas=JSON.parse(data);
+
+            for(let i=0; i<mas.length; i++){
+                s+="<tr>"+
+                "<th scope='row'>"+mas[i][0]+"</th>"+
+                "<td>"+mas[i][1]+"</td>"+
+                "<td>"+mas[i][2]+"</td>"+
+                "<td>"+mas[i][6]+"</td>"+
+                "<td><a class='btn btn-primary' href='order_composition.php?id_order="+mas[i][0]+"'>Подробнее</a></td> </tr>";
+            }
+            s+=" </tbody>    </table>";
+            let history_orders=document.getElementById("history_orders");
+            history_orders.innerHTML=s;
+
+            
+        }
+    });
 }

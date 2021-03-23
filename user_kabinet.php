@@ -59,6 +59,11 @@ include("header.php");
           <a id ="show_modal_registration" class=" btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal3">Сменить пароль</a>
         </form>
        
+       <div id="history_orders">
+        
+
+       
+       </div>
 </div>
 <script src="js/js4.js"></script>
 <?php

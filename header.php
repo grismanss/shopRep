@@ -61,9 +61,9 @@ session_start();
     <div class="container-fluid ">
       <a class="navbar-brand" href="#"><img class="my_logo" src="img/logo.png">Бытовая техника</a>
       <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
-          <button class="btn btn-outline-primary" type="submit">Поиск</button>
+        <form class="d-flex"  onsubmit="return false;">
+          <input id='poisk_data'class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
+          <button id='poisk_form' class="btn btn-outline-primary" type="submit">Поиск</button>
         </form>
       </div>
     </div>
