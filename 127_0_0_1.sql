@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 25 2021 г., 08:31
+-- Время создания: Мар 23 2021 г., 06:06
 -- Версия сервера: 5.6.38
 -- Версия PHP: 7.0.26
 
@@ -3713,6 +3713,14 @@ CREATE TABLE `brand` (
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `brand`
+--
+
+INSERT INTO `brand` (`id`, `name`) VALUES
+(1, 'Philips'),
+(2, 'Dexp');
+
 -- --------------------------------------------------------
 
 --
@@ -3721,8 +3729,19 @@ CREATE TABLE `brand` (
 
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
-  `name` int(50) NOT NULL
+  `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `category`
+--
+
+INSERT INTO `category` (`id`, `name`) VALUES
+(1, 'Прочее'),
+(2, 'Крупная бытовая техника'),
+(3, 'Холодильники'),
+(4, 'Телефоны'),
+(5, 'ПК и комплектующие');
 
 -- --------------------------------------------------------
 
@@ -3733,8 +3752,18 @@ CREATE TABLE `category` (
 CREATE TABLE `general_order` (
   `id` int(11) NOT NULL,
   `data` datetime NOT NULL,
-  `summa` double NOT NULL
+  `summa` double NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `general_order`
+--
+
+INSERT INTO `general_order` (`id`, `data`, `summa`, `id_user`, `id_status`) VALUES
+(9, '2021-03-23 08:38:57', 23000, 32, 1),
+(10, '2021-03-23 08:49:33', 17000, 32, 6);
 
 -- --------------------------------------------------------
 
@@ -3747,9 +3776,18 @@ CREATE TABLE `orders` (
   `general_order_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `count` int(11) NOT NULL,
-  `status_id` int(11) NOT NULL
+  `count` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id`, `general_order_id`, `user_id`, `product_id`, `count`) VALUES
+(8, 9, 32, 8, 1),
+(9, 9, 32, 3, 1),
+(10, 10, 32, 5, 1),
+(11, 10, 32, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -3768,6 +3806,21 @@ CREATE TABLE `products` (
   `brand_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `count`, `price`, `description`, `photo`, `category_id`, `brand_id`) VALUES
+(1, 'Фен', 2, 2000, 'тпрпрроплпррллпрп', '1.jpg', 1, 1),
+(2, 'Кофеварка', 3, 70000, 'квоеноно', '1.jpg', 2, 1),
+(3, 'Кофеварка', 3, 15000, 'квоеноно', '2.jpg', 1, 1),
+(4, 'Кофеварка', 3, 7000, 'квоеноно', '1.jpg', 1, 1),
+(5, 'Кофеварка', 3, 10000, 'квоеноно', '2.jpg', 1, 1),
+(6, 'Кофеварка', 3, 4000, 'квоеноно', '1.jpg', 1, 1),
+(7, 'Кофеварка', 3, 1500, 'квоеноно', '1.jpg', 1, 1),
+(8, 'Кофеварка', 3, 8000, 'квоеноно', '1.jpg', 1, 1),
+(9, 'Кофеварка', 3, 35000, 'квоеноно', '1.jpg', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -3778,6 +3831,18 @@ CREATE TABLE `status` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `status`
+--
+
+INSERT INTO `status` (`id`, `name`) VALUES
+(1, 'Принят'),
+(2, 'В работе'),
+(3, 'Ожидает выдачи'),
+(4, 'Отменен'),
+(5, 'Выдан клиенту'),
+(6, 'Новый');
 
 -- --------------------------------------------------------
 
@@ -3799,9 +3864,9 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`Id`, `heeader`, `description`, `data1`, `data2`, `photo`) VALUES
-(1, 'Акция 1', 'Акция 1 Акция 1 Акция 1', '2021-02-01', '2021-02-28', '1.jpg'),
-(2, 'Акция 2', 'Акция 2 Акция 2 Акция 2', '2021-02-01', '2021-02-28', '2.jpg'),
-(3, 'Акция 3', 'Акция 3 Акция 3 Акция 3', '2021-02-01', '2021-02-28', '3.jpg');
+(1, 'Акция 1', 'Акция 1 Акция 1 Акция 1', '2021-02-02', '2021-02-28', '1.jpg'),
+(2, 'Акция 2', 'Акция 2 Акция 2 Акция 2', '2021-02-17', '2021-02-28', '2.jpg'),
+(3, 'Акция 3', 'Акция 3 Акция 3 Акция 3', '2021-02-22', '2021-02-28', '3.jpg');
 
 -- --------------------------------------------------------
 
@@ -3813,14 +3878,22 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `first_name` varchar(50) NOT NULL,
-  `patronymic` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `phone` varchar(50) NOT NULL,
+  `patronymic` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
   `pass` varchar(200) NOT NULL,
   `date_of_birth` date NOT NULL,
   `registration_date` date NOT NULL,
   `sex` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `last_name`, `first_name`, `patronymic`, `email`, `phone`, `pass`, `date_of_birth`, `registration_date`, `sex`) VALUES
+(31, 'tyt', 'tyuty', 'tyutyu', 'tyutyuy@mail.ru', '', '555', '2021-03-11', '2021-03-15', 1),
+(32, 'xvnnghmgmvhh', '222', '222', '222@mail.ru', '11111111', '222', '2021-03-11', '2021-03-16', 0);
 
 --
 -- Индексы сохранённых таблиц
@@ -3848,7 +3921,9 @@ ALTER TABLE `category`
 -- Индексы таблицы `general_order`
 --
 ALTER TABLE `general_order`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_status` (`id_status`),
+  ADD KEY `id_status_2` (`id_status`);
 
 --
 -- Индексы таблицы `orders`
@@ -3857,8 +3932,7 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `general_order_id` (`general_order_id`),
   ADD KEY `product_id` (`product_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `status_id` (`status_id`);
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Индексы таблицы `products`
@@ -3900,37 +3974,37 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT для таблицы `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `general_order`
 --
 ALTER TABLE `general_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `status`
 --
 ALTER TABLE `status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `stock`
@@ -3942,11 +4016,17 @@ ALTER TABLE `stock`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
+
+--
+-- Ограничения внешнего ключа таблицы `general_order`
+--
+ALTER TABLE `general_order`
+  ADD CONSTRAINT `general_order_ibfk_1` FOREIGN KEY (`id_status`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `orders`
@@ -3954,8 +4034,7 @@ ALTER TABLE `users`
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`general_order_id`) REFERENCES `general_order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `products`
