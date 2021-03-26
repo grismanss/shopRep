@@ -1,4 +1,56 @@
 
+function save_status(id_zakaz){
+    let my_select=document.getElementById('my_select').value;
+   // alert (id_zakaz+" "+my_select);
+    $.ajax({
+        url: 'update_status.php',
+        method: 'post',
+        dataType: 'html',
+        data: {id_zakaz:id_zakaz,my_select:my_select},
+        success: function(data){
+            alert(data);
+            load_zakaz();
+        }
+         
+    });
+}
+
+
+function sposok_status_get(id_status, id_zakaz){
+   let select="";
+    $.ajax({
+        url: 'select_status.php',
+        method: 'post',
+        dataType: 'html',
+        data: "",
+        success: function(data){
+           // alert(data);
+           let d=JSON.parse(data);
+           select="<select id='my_select'>";
+
+           /* <select>
+          <option value="1">dfgfdfgdf</option>
+          <option value="2">xghghfg</option>
+
+      </select> */
+           for (let i=0; i<d.length; i++){
+               if (d[i][0]==id_status){
+                select+="<option selected value='"+d[i][0]+"'>"+d[i][1]+"</option>";
+               }else{
+                select+="<option value='"+d[i][0]+"'>"+d[i][1]+"</option>";
+        }
+
+           }
+           select+="</select>"+
+           "<button onclick='save_status("+id_zakaz+")'>Сохранить</button>";
+           
+           let select_status_id=document.getElementById("select_status_id");
+           select_status_id.innerHTML=select;
+       
+        }
+    });
+   
+}
 
 
 
@@ -49,16 +101,24 @@ function load_zakaz(){
         success: function(data){
            let d=JSON.parse(data);
 
+
+
+
+
+
            let s="<table class='table'>           <thead>             <tr>"+
                "<th>№</th>               <th>Дата</th>               <th>Сумма</th>"+
                "<th>Пользователь</th>               <th>Статус</th>"+
                "<th></th>             </tr>           </thead>           <tbody>";
-            
-               for (let i=0; i<d.length;i++){
+           
+               for (let i=0; i<d.length;i++){            
+               
+
+
                 s+="<tr>                <th scope='row'>"+d[i][0]+"</th>"+
                 "<td>"+d[i][1]+"</td>                <td>"+d[i][2]+"</td>"+
                "<td>"+d[i][6]+" "+d[i][7]+" "+d[i][8]+"</td>                <th>"+d[i][16]+"</th>"+
-                "<th>"+d[i][0]+"</th>              </tr>";
+                "<th><button onclick='sposok_status_get("+d[i][15]+", "+d[i][0]+")'>Редактировать</button></th>              </tr>";
             }
 
 
@@ -70,3 +130,6 @@ function load_zakaz(){
         }
     });
 }
+
+
+sposok_status_get(1,1);

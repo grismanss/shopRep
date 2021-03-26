@@ -142,6 +142,15 @@
     </nav>
 
     <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+
+    <div id='select_status_id'>
+      <select>
+          <option value="1">dfgfdfgdf</option>
+          <option value="2">xghghfg</option>
+
+      </select>
+      <button onclick='save_status()'>Сохранить</button>
+    </div>
       <div id='zakaz_admin_list'>
       <table class="table">
   <thead>

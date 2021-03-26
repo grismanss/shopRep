@@ -2,11 +2,11 @@
 include("connect.php");
 session_start();
 $inputEmailadmin=$_POST['inputEmailadmin'];
-$inputPasswordadmin=$_POST['inputPasswordadmin'];
+$inputPasswordadmin=md5($_POST['inputPasswordadmin']);
 $s="select * from admin where login='$inputEmailadmin' 
 and pass='$inputPasswordadmin'";
 $rez=mysqli_query($link,$s);
-$mas=array('status'=>0);
+$mas=array('status'=>$s);
 $n=mysqli_num_rows($rez);
 if ($n!=0){
     $mas['status']=1;
