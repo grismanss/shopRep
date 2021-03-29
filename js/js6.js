@@ -24,7 +24,7 @@ function loat_order_composition(){
             //alert(data);
             let s="";
             let mas=JSON.parse(data);
-            s+="<table class='table table-dark table-striped'>"+
+            s+="<table id='tableId' class='table table-dark table-striped'>"+
             "<thead>           <tr>                <th>№</th>"+
                " <th>Наименование</th>            <th>Количество</th>"+
                 "<th>Фото</th>              </tr>     </thead>            <tbody>";
@@ -39,4 +39,12 @@ function loat_order_composition(){
             
         }
     });
+}
+
+function to_excel(){
+    $(document).ready(function () {
+        $("#tableId").table2excel({
+        filename: "new.xls"
+        });
+        });
 }

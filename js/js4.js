@@ -182,7 +182,7 @@ function history_orders_load(){
         data: "" ,
         success: function(data){
            // alert(data);
-            let s="<table class='table'>"+
+            let s="<table id='tableId' class='table'>"+
             "<thead class='thead-dark'>"+
               "<tr>     <th scope='col'>№</th>"+
                 "<th scope='col'>Дата</th>"+
@@ -206,4 +206,13 @@ function history_orders_load(){
             
         }
     });
+}
+
+
+function to_excel(){
+    $(document).ready(function () {
+        $("#tableId").table2excel({
+        filename: "new.xls"
+        });
+        });
 }

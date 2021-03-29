@@ -64,6 +64,7 @@ include("header.php");
 
        
        </div>
+       <button onclick="to_excel();">Выгрузить exel</button>
 </div>
 <script src="js/js4.js"></script>
 <?php

@@ -2,8 +2,8 @@
 session_start();
 include("connect.php");
 $id=$_SESSION['id'];
-$oldpass=$_POST['oldpass'];
-$newpass=$_POST['newpass'];
+$oldpass=md5(trim($_POST['oldpass']));
+$newpass=md5(trim($_POST['newpass']));
 $s="SELECT * FROM users WHERE id=$id and pass='$oldpass'";
 $res=mysqli_query($link, $s);
 $n=mysqli_num_rows($res);

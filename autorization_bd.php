@@ -2,7 +2,7 @@
 session_start();
 include("connect.php");
 $login=$_POST['login'];
-$pass=$_POST['pass'];
+$pass=md5(trim($_POST['pass']));
 
 $s="select id from users where (phone='$login' and pass='$pass') 
 or (email='$login' and pass='$pass')";
